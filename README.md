@@ -10,7 +10,9 @@
 ### Prerequisites
 
 - You must have Node installed to run the following commands.
-[WDD 330 Setup Environment](https://byui-cse.github.io/wdd330-ww-course/intro/) 
+[WDD 330 Setup Environment](https://byui-cse.github.io/wdd330-ww-course/intro/)
+[NETLIFY-LINK](https://sleepoutside07team.netlify.app/) 
+[NETLIFY-PROJECT](https://app.netlify.com/projects/sleepoutside07team/overview)
 
 ### Common Workflow Commands
 

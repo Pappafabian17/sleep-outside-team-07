@@ -10,7 +10,7 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const productCart = getLocalStorage("so-cart") || [];
   const product = await dataSource.findProductById(e.target.dataset.id);
-  productCart.push(product)
+  productCart.push(product);
   addProductToCart(productCart);
 }
 

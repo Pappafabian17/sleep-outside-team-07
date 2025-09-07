@@ -3,3 +3,4 @@ Netlify-link(production) = https://sleepoutside07team.netlify.app/
 Team-members = Fabian Pappa
 Karim Valenzuela
 Sione Uhlig 
+Marvin Canastuj

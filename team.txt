@@ -4,3 +4,5 @@ Netlify-link(production) = https://sleepoutside07team.netlify.app/
 Fabian Pappa
 Karim Valenzuela
 Jose David Colmenarez Gil
+Sione Uhlig 
+Marvin Canastuj

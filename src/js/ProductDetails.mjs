@@ -21,13 +21,13 @@ export default class ProductDetails {
     setLocalStorage("so-cart", product);
   }
   renderProductDetails() {
-    qs("h2").textcontent = this.product.Brand.Name;
-    qs("h3").textcontent = this.product.Brand.NameWithoutBrand;
+    qs("h2").textContent = this.product.NameWithoutBrand;
+    qs("h3").textContent = this.product.Brand.Name;
 
     qs("#product-img").src = this.product.Image;
     qs("#product-img").alt = this.product.NameWithoutBrand;
-    qs(".product-card__price").textcontent = this.product.FinalPrice;
-    qs(".product__color").textcontent = this.product.Colors[0].ColorName;
+    qs(".product-card__price").textContent += this.product.FinalPrice;
+    qs(".product__color").textContent = this.product.Colors[0].ColorName;
     qs(".product__description").innerHTML = this.product.DescriptionHtmlSimple;
     qs("#addToCart").dataset.id = this.product.Id;
     document.title = `Sleep outside ${this.product.Name}`;

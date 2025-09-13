@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
+  const product = urlParams.get(param);
   return product;
 }
 
@@ -38,4 +38,12 @@ export function getParam(param) {
 export function textContains(text, query) {
   // Ensure text is a string and not null/undefined before calling toLowerCase
   return text ? text.toLowerCase().includes(query.toLowerCase()) : false;
+}
+
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(template);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }

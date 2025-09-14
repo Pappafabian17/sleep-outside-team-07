@@ -22,9 +22,6 @@ export default class ProductList {
         this.renderList(list);
     }
     renderList(list) {
-        //const htmlStrings = list.map(productCardTemplate);
-        //this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 

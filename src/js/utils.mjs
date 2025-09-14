@@ -22,6 +22,18 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+// render a list of items with a template
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
+
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+// retrieve a parameter from the URL
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -46,4 +58,26 @@ export function renderListWithTemplate(template, parentElement, list, position =
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+// Get cart item count
+export function getCartCount() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  return cartItems.length;
+}
+
+// Update cart count display
+export function updateCartCount() {
+  const cartCountElement = qs("#cart-count");
+  if (cartCountElement) {
+    const count = getCartCount();
+    cartCountElement.textContent = count;
+
+    // Hide if count is 0
+    if (count === 0) {
+      cartCountElement.classList.add("hidden");
+    } else {
+      cartCountElement.classList.remove("hidden");
+    }
+  }
 }

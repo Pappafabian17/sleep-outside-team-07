@@ -41,6 +41,25 @@ export function getParam(param) {
   return product;
 }
 
+/**
+ * Safely checks if a string contains a substring, ignoring case.
+ * @param {string | undefined | null} text The string to search within.
+ * @param {string} query The substring to search for.
+ * @returns {boolean} True if the text contains the query, otherwise false.
+ */
+export function textContains(text, query) {
+  // Ensure text is a string and not null/undefined before calling toLowerCase
+  return text ? text.toLowerCase().includes(query.toLowerCase()) : false;
+}
+
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(template);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
 // Get cart item count
 export function getCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];

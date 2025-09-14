@@ -133,8 +133,8 @@ button {
 
 .cart-count {
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: 4px;
+  right: -7px;
   background-color: var(--tertiary-color);
   color: white;
   border-radius: 50%;
@@ -281,6 +281,24 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+/* Search icon styles */
+
+.search {
+  text-align: center;
+}
+
+.search svg {
+  position: absolute;
+  left: 8px;
+  top: 15px;
+  width: 25px;
+}
+
+.search:hover svg {
+  fill: gray;
+  cursor: pointer;
+}
+
 /* End search icon styles */
 
 /* Search-icon styles */

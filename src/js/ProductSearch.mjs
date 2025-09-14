@@ -85,6 +85,8 @@ export default class ProductSearch {
     this.resultsContainer.style.top = `${inputRect.bottom + window.scrollY}px`;
     this.resultsContainer.style.left = `${inputRect.left + window.scrollX}px`;
     this.resultsContainer.style.width = `${this.searchInput.offsetWidth}px`;
+    this.resultsContainer.style.maxHeight = "100vh";
+    this.resultsContainer.style.overflowY = "auto";
   }
 
   hideResults() {

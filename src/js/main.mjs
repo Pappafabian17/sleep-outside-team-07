@@ -1,8 +1,10 @@
-import { updateCartCount } from "./utils.mjs";
+import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import ProductSearch from "./ProductSearch.mjs"
 const productData = new ProductData("tents");
+
+loadHeaderFooter();
 
 const productList = new ProductList("tents", productData, document.querySelector(".product-list"));
 productList.init();

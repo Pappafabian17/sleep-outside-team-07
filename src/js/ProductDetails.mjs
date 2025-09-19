@@ -22,12 +22,20 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
+    qs("h2").textContent =
+      this.product.Category.charAt(0).toUpperCase() +
+      this.product.Category.slice(1);
     qs("h2").textContent = this.product.Brand.Name;
     qs("h3").textContent = this.product.NameWithoutBrand;
 
-    qs("#product-img").src = this.product.Image;
+    qs("#product-img").src = this.product.Images.PrimaryExtraLarge;
     qs("#product-img").alt = this.product.NameWithoutBrand;
-    qs(".product-card__price").textContent = `$${this.product.FinalPrice}`;
+    const euroPrice = new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+    }).format(Number(this.product.FinalPrice) * 0.85);
+
+    qs(".product-card__price").textContent = `${euroPrice}`;
     qs(".product__color").textContent = this.product.Colors[0].ColorName;
     qs(".product__description").innerHTML = this.product.DescriptionHtmlSimple;
     qs("#addToCart").dataset.id = this.product.Id;

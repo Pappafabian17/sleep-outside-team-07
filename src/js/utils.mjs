@@ -23,7 +23,14 @@ export function setClick(selector, callback) {
 }
 
 // render a list of items with a template
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false,
+) {
+  console.log("list", list);
   const htmlStrings = list.map(templateFn);
 
   if (clear) {
@@ -75,20 +82,20 @@ export function updateCartCount() {
 }
 
 // render a list of items with a template
-export function renderWithTemplate(template, parentElement,data,callback) {
+export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = template;
-  if (callback){
-    callback(data)
+  if (callback) {
+    callback(data);
   }
 }
 
-export async function loadTemplate(path){
+export async function loadTemplate(path) {
   const res = await fetch(path);
   const template = await res.text();
   return template;
-} 
+}
 
-export async function loadHeaderFooter(){
+export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
 

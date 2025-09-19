@@ -32,6 +32,3 @@ async function addToCartHandler(e) {
 document
     .getElementById("addToCart")
     .addEventListener("click", addToCartHandler);
-
-// Initialize cart count when this module loads
-updateCartCount();

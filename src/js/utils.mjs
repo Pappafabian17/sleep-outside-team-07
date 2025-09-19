@@ -30,7 +30,6 @@ export function renderListWithTemplate(
   position = "afterbegin",
   clear = false,
 ) {
-  console.log("list", list);
   const htmlStrings = list.map(templateFn);
 
   if (clear) {

@@ -22,15 +22,26 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
-    qs("h2").textContent = this.product.Brand.Name;
-    qs("h3").textContent = this.product.NameWithoutBrand;
-
-    qs("#product-img").src = this.product.Image;
-    qs("#product-img").alt = this.product.NameWithoutBrand;
-    qs(".product-card__price").textContent = `$${this.product.FinalPrice}`;
-    qs(".product__color").textContent = this.product.Colors[0].ColorName;
-    qs(".product__description").innerHTML = this.product.DescriptionHtmlSimple;
-    qs("#addToCart").dataset.id = this.product.Id;
-    document.title = `Sleep Outside | ${this.product.Name}`;
+    productDetailsTemplate(this.product);
   }
+
+}
+
+function productDetailsTemplate(product) {
+  document.querySelector("h2").textContent = product.Category.charAt(0).toUpperCase() + product.Category.slice(1);
+  document.querySelector("#p-brand").textContent = product.Brand.Name;
+  document.querySelector("#p-name").textContent = product.NameWithoutBrand;
+
+  const productImage = document.querySelector("#p-image");
+  productImage.src = product.Images.PrimaryExtraLarge;
+  productImage.alt = product.NameWithoutBrand;
+  const euroPrice = new Intl.NumberFormat('de-DE',
+    {
+      style: 'currency', currency: 'EUR',
+    }).format(Number(product.FinalPrice) * 0.85);
+  document.querySelector("#p-price").textContent = `${euroPrice}`;
+  document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
+  document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
+
+  document.querySelector("#add-to-cart").dataset.id = product.Id;
 }

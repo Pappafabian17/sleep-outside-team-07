@@ -43,5 +43,7 @@ function productDetailsTemplate(product) {
   document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
   document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
 
-  document.querySelector("#add-to-cart").dataset.id = product.Id;
+  document.querySelector("#addToCart").dataset.id = product.Id;
+
+  document.title += ` ${product.NameWithoutBrand}`;
 }

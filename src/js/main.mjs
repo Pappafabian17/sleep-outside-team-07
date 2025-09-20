@@ -1,6 +1,4 @@
 import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
 import ProductSearch from "./ProductSearch.mjs"
 
 async function initPage() {

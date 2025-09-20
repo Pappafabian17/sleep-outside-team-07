@@ -1,13 +1,24 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter, getParam } from './utils.mjs';
+import ProductSearch from "./ProductSearch.mjs";
+import { loadHeaderFooter, getParam, updateCartCount } from "./utils.mjs";
 
-await loadHeaderFooter();
+async function initPage() {
+    // Primero, carga los elementos comunes como el encabezado y el pie de página
+    await loadHeaderFooter();
 
-const category = getParam("category");
+    // Ahora que el encabezado está cargado, podemos inicializar la búsqueda y el carrito
+    const productSearch = new ProductSearch();
+    productSearch.init();
+    updateCartCount();
 
-const dataSource = new ProductData();
-const listElement = document.querySelector(".product-list");
+    // Luego, inicializa la lista de productos específica de esta página
+    const category = getParam("category");
+    const dataSource = new ProductData();
+    const listElement = document.querySelector(".product-list");
 
-const myList = new ProductList(category, dataSource, listElement);
-myList.init();
+    const myList = new ProductList(category, dataSource, listElement);
+    myList.init();
+}
+
+initPage();

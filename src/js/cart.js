@@ -1,5 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -11,13 +10,6 @@ function renderCartContents() {
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-
-  document.querySelectorAll(".remove-item").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const id = e.target.dataset.id;
-      removeItemFromCart(id);
-    });
-  });
 
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -50,8 +42,8 @@ function cartItemTemplate(item) {
       <p class="cart-card__color">${colorName}</p>
       <p class="cart-card__quantity">qty: 1</p>
       <p class="cart-card__price">${discountBadge}$${item.FinalPrice}</p>
+      <span class="remove-item" data-id="${item.Id}" style="cursor:pointer;">✕</span>
     </li>
-    <span class="remove-item" data-id="${item.Id}" style="cursor:pointer;">✕</span>
   `;
 }
 
@@ -64,6 +56,8 @@ function removeItemFromCart(id) {
     setLocalStorage("so-cart", cartItems);
     renderCartContents();
   }
+
+  updateCartCount();
 }
 
 renderCartContents();

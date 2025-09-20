@@ -204,6 +204,8 @@ button {
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
+  max-width: 800px;
+  margin: auto;
 }
 
 .product-list a {
@@ -348,7 +350,7 @@ button {
 
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto 15% 10px;
   }
 }
 
@@ -385,13 +387,6 @@ footer {
 
 .search-icon input {
   padding-left: 40px;
-}
-
-/* End search-icon global styles */
-
-/* Search results styles */
-.search-results {
-  padding: 0.8em;
 }
 
 /* End search-icon global styles */

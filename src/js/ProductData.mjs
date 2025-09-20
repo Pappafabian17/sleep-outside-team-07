@@ -1,5 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL
-
+const baseURL = import.meta.env.VITE_SERVER_URL;
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -29,9 +28,11 @@ export default class ProductData {
     const promises = categories.map((category) =>
       fetch(`${baseURL}products/search/${category} `)
         .then(convertToJson)
-        .then((data) => data.Result || data)
+        .then((data) => data.Result || data),
     );
-    const productArrays = await Promise.all(promises.map((p) => p.catch(() => [])));
+    const productArrays = await Promise.all(
+      promises.map((p) => p.catch(() => [])),
+    );
     return productArrays.flat();
   }
 }

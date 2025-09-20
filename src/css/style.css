@@ -448,3 +448,30 @@ a.element-list:hover img {
 }
 
 /* End categories icon styles */
+
+/* Breadcrumbs styles */
+#breadcrumbs {
+  padding: 0.5rem 1rem;
+  font-size: var(--small-font);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#breadcrumbs a {
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+#breadcrumbs > * {
+  padding: 0.5em;
+}
+
+#breadcrumbs .home {
+  width: 48px;
+  height: 48px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+/* End Breadcrumbs */

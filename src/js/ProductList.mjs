@@ -25,7 +25,9 @@ export default class ProductList {
     async init() {
         const list = await this.dataSource.getData(this.category);
         this.renderList(list);
-        document.querySelector(".title").textContent = this.category;
+        const plural = list.length !== 1 ? "s" : "";
+        const categoryName = this.category.replaceAll("-", " ");
+        document.querySelector(".title").textContent = `${categoryName} -> (${list.length} item${plural})`;
     }
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);

@@ -35,11 +35,32 @@ function productDetailsTemplate(product) {
   const productImage = document.querySelector("#p-image");
   productImage.src = product.Images.PrimaryExtraLarge;
   productImage.alt = product.NameWithoutBrand;
-  const euroPrice = new Intl.NumberFormat('de-DE',
-    {
-      style: 'currency', currency: 'EUR',
-    }).format(Number(product.FinalPrice) * 0.85);
-  document.querySelector("#p-price").textContent = `${euroPrice}`;
+
+  // Calculate discount and format price with discount indicator
+  const hasDiscount = product.SuggestedRetailPrice > product.FinalPrice;
+  const euroPrice = new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(Number(product.FinalPrice) * 0.85);
+
+  let priceHTML = '';
+  if (hasDiscount) {
+    const discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
+    const originalEuroPrice = new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(Number(product.SuggestedRetailPrice) * 0.85);
+
+    priceHTML = `
+      <span class="discount-badge">-${discountPercentage}% OFF</span>
+      <span class="original-price">${originalEuroPrice}</span>
+      <span class="sale-price">${euroPrice}</span>
+    `;
+  } else {
+    priceHTML = euroPrice;
+  }
+
+  document.querySelector("#p-price").innerHTML = priceHTML;
   document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
   document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
 

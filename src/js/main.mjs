@@ -1,8 +1,8 @@
-import { loadHeaderFooter } from "./utils.mjs";
-import ProductSearch from "./ProductSearch.mjs";
+import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
+import ProductSearch from "./ProductSearch.mjs"
 
 async function initPage() {
-  await loadHeaderFooter();
+    await loadHeaderFooter();
 
   //initializes the behavior of the product search engine
   const productSearch = new ProductSearch();
@@ -13,5 +13,3 @@ async function initPage() {
 }
 
 initPage();
-
-loadHeaderFooter();

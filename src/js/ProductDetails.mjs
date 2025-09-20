@@ -19,23 +19,49 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
-    qs("h2").textContent =
-      this.product.Category.charAt(0).toUpperCase() +
-      this.product.Category.slice(1);
-    qs("h2").textContent = this.product.Brand.Name;
-    qs("h3").textContent = this.product.NameWithoutBrand;
-
-    qs("#product-img").src = this.product.Images.PrimaryExtraLarge;
-    qs("#product-img").alt = this.product.NameWithoutBrand;
-    const euroPrice = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(Number(this.product.FinalPrice) * 0.85);
-
-    qs(".product-card__price").textContent = `${euroPrice}`;
-    qs(".product__color").textContent = this.product.Colors[0].ColorName;
-    qs(".product__description").innerHTML = this.product.DescriptionHtmlSimple;
-    qs("#addToCart").dataset.id = this.product.Id;
-    document.title = `Sleep Outside | ${this.product.Name}`;
+    productDetailsTemplate(this.product);
   }
+
+}
+
+function productDetailsTemplate(product) {
+  document.querySelector("h2").textContent = product.Category.charAt(0).toUpperCase() + product.Category.slice(1);
+  document.querySelector("#p-brand").textContent = product.Brand.Name;
+  document.querySelector("#p-name").textContent = product.NameWithoutBrand;
+
+  const productImage = document.querySelector("#p-image");
+  productImage.src = product.Images.PrimaryExtraLarge;
+  productImage.alt = product.NameWithoutBrand;
+
+  // Calculate discount and format price with discount indicator
+  const hasDiscount = product.SuggestedRetailPrice > product.FinalPrice;
+  const euroPrice = new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(Number(product.FinalPrice) * 0.85);
+
+  let priceHTML = '';
+  if (hasDiscount) {
+    const discountPercentage = Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100);
+    const originalEuroPrice = new Intl.NumberFormat('de-DE', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(Number(product.SuggestedRetailPrice) * 0.85);
+
+    priceHTML = `
+      <span class="discount-badge">-${discountPercentage}% OFF</span>
+      <span class="original-price">${originalEuroPrice}</span>
+      <span class="sale-price">${euroPrice}</span>
+    `;
+  } else {
+    priceHTML = euroPrice;
+  }
+
+  document.querySelector("#p-price").innerHTML = priceHTML;
+  document.querySelector("#p-color").textContent = product.Colors[0].ColorName;
+  document.querySelector("#p-description").innerHTML = product.DescriptionHtmlSimple;
+
+  document.querySelector("#addToCart").dataset.id = product.Id;
+
+  document.title += ` ${product.NameWithoutBrand}`;
 }

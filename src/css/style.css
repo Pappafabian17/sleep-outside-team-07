@@ -212,6 +212,58 @@ button {
 }
 
 /* Styles for product lists */
+/* Discount badge styling */
+.discount-badge {
+  background-color: #e74c3c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Original price styling (crossed out) */
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+  font-size: 0.9em;
+}
+
+/* Sale price styling (emphasized) */
+.sale-price {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* Product card price container */
+.product-card__price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.card-discount-badge {
+  background-color: #e74c3c;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 8px;
+  font-size: 0.7em;
+  font-weight: bold;
+  margin-right: 6px;
+  display: inline;
+}
+
+.product-card a {
+  position: relative;
+}
+
 .product-card {
   flex: 1 1 45%;
   margin: 0.25em;
@@ -304,6 +356,7 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
 /* Search icon styles */
 
 .search {
@@ -356,3 +409,47 @@ input:focus {
 }
 
 /* End Input global styles */
+
+/* Categories icon styles */
+
+section.categories {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-list img {
+  width: 80px;
+  height: 80px;
+}
+
+
+.element-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5em;
+  margin: 0.25em;
+}
+
+a.element-list {
+  font: var(--font-body);
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--dark-grey);
+  padding: 0.8em;
+}
+
+a.element-list:hover {
+  color: var(--primary-color);
+}
+
+a.element-list:hover img {
+  cursor: pointer;
+  filter: brightness(120%)
+}
+
+/* End categories icon styles */

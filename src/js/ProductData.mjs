@@ -8,29 +8,25 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor() {
-    // this.category = category;
-    // if (this.category) {
-    //   this.path = `../json/${this.category}.json`;
-    // }
-  }
+    constructor() {
+      //this.category = category;
+    }
   async getData(category) {
-    const response = await fetch(`${baseURL}products/search/${category}`);
+    const response = await fetch(`${baseURL}products/search/${category} `);
     const data = await convertToJson(response);
     return data.Result;
   }
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
+    //console.log(data.Result);
     return data.Result;
-    // const products = await this.getData();
-    // return products.find((item) => item.Id === id);
   }
   async findAllProducts() {
-    const categories = ["tents", "sleeping-bags", "backpacks"];
+    const categories = ["tents", "sleeping-bags", "backpacks", "hammocks"];
 
     const promises = categories.map((category) =>
-      fetch(`../json/${category}.json`)
+      fetch(`${baseURL}products/search/${category} `)
         .then(convertToJson)
         .then((data) => data.Result || data),
     );

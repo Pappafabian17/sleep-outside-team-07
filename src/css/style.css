@@ -348,6 +348,7 @@ input {
   padding: 1em;
   border: 2px solid var(--light-grey);
   font-size: var(--font-base);
+  width: 30rem;
 }
 
 input:focus {

@@ -2,14 +2,24 @@ import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
+  const cartFooter = document.querySelector(".cart-footer");
 
   if (cartItems.length === 0) {
     document.querySelector(".product-list").innerHTML = '<li>Your cart is empty</li>';
+    cartFooter.classList.add("hide");
     return;
   }
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // Calculate and display the total
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.FinalPrice * (item.quantity || 1),
+    0
+  );
+  cartFooter.classList.remove("hide");
+  document.querySelector(".cart-total").innerHTML = `<strong>Total:</strong> ${total.toFixed(2)} €`;
 
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -39,8 +49,8 @@ function cartItemTemplate(item) {
       <a href="#">
         <h2 class="card__name">${item.Name}</h2>
       </a>
-      <p class="cart-card__color">${colorName}</p>
-      <p class="cart-card__quantity">qty: 1</p>
+      <p class="cart-card__color">Color: ${colorName}</p>
+      <p class="cart-card__quantity">qty: ${item.quantity || 1}</p>
       <p class="cart-card__price">${discountBadge}$${item.FinalPrice}</p>
       <span class="remove-item" data-id="${item.Id}" style="cursor:pointer;">✕</span>
     </li>

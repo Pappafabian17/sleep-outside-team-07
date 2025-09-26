@@ -22,7 +22,7 @@ function renderCartContents() {
     0
   );
   cartFooter.classList.remove("hide");
-  cartTotal.innerHTML = `<strong>Total:</strong> $${total.toFixed(2)}`;
+  cartTotal.innerHTML = `<strong>Total in Cart:</strong> $${total.toFixed(2)}`;
 
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {

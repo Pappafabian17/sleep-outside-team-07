@@ -5,7 +5,8 @@ function renderCartContents() {
   const cartFooter = document.querySelector(".cart-footer");
 
   if (cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML = '<li>Your cart is empty</li>';
+    document.querySelector(".product-list").innerHTML =
+      "<li>Your cart is empty</li>";
     cartFooter.classList.add("hide");
     return;
   }
@@ -16,10 +17,11 @@ function renderCartContents() {
   // Calculate and display the total
   const total = cartItems.reduce(
     (acc, item) => acc + item.FinalPrice * (item.quantity || 1),
-    0
+    0,
   );
   cartFooter.classList.remove("hide");
-  document.querySelector(".cart-total").innerHTML = `<strong>Total:</strong> ${total.toFixed(2)} €`;
+  document.querySelector(".cart-total").innerHTML =
+    `<strong>Total:</strong> ${total.toFixed(2)} €`;
 
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -31,15 +33,19 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   // Safely get the image URL
-  const imageUrl = item.Images?.PrimaryExtraLarge || item.Images?.PrimaryLarge || '/images/placeholder.jpg';
+  const imageUrl =
+    item.Images?.PrimaryExtraLarge ||
+    item.Images?.PrimaryLarge ||
+    "/images/placeholder.jpg";
 
   // Safely get the color name
-  const colorName = item.Colors?.[0]?.ColorName || 'N/A';
+  const colorName = item.Colors?.[0]?.ColorName || "N/A";
 
   // Calculate discount badge - ONLY NEW CODE ADDED HERE
   const hasDiscount = item.SuggestedRetailPrice > item.FinalPrice;
-  const discountBadge = hasDiscount ?
-    `<span class="card-discount-badge">-${Math.round(((item.SuggestedRetailPrice - item.FinalPrice) / item.SuggestedRetailPrice) * 100)}%</span>` : '';
+  const discountBadge = hasDiscount
+    ? `<span class="card-discount-badge">-${Math.round(((item.SuggestedRetailPrice - item.FinalPrice) / item.SuggestedRetailPrice) * 100)}%</span>`
+    : "";
 
   return `
     <li class="cart-card divider">

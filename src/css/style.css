@@ -419,7 +419,6 @@ section.categories {
   height: 80px;
 }
 
-
 .element-list {
   display: flex;
   flex-direction: column;
@@ -444,7 +443,7 @@ a.element-list:hover {
 
 a.element-list:hover img {
   cursor: pointer;
-  filter: brightness(120%)
+  filter: brightness(120%);
 }
 
 /* End categories icon styles */
@@ -475,3 +474,11 @@ a.element-list:hover img {
   border-radius: 50%;
 }
 /* End Breadcrumbs */
+.fav-container {
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+.wish-list {
+  list-style: none;
+}

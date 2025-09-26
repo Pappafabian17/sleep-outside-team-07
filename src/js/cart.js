@@ -3,15 +3,18 @@ import { getLocalStorage, setLocalStorage, updateCartCount } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const cartFooter = document.querySelector(".cart-footer");
+  const cartList = document.querySelector(".product-list");
+  const cartTotal = document.querySelector(".cart-total");
 
   if (cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML = '<li>Your cart is empty</li>';
+    cartList.innerHTML = '<li>Your cart is empty</li>';
+    cartTotal.innerHTML = "";
     cartFooter.classList.add("hide");
     return;
   }
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  cartList.innerHTML = htmlItems.join("");
 
   // Calculate and display the total
   const total = cartItems.reduce(
@@ -19,7 +22,7 @@ function renderCartContents() {
     0
   );
   cartFooter.classList.remove("hide");
-  document.querySelector(".cart-total").innerHTML = `<strong>Total:</strong> ${total.toFixed(2)} €`;
+  cartTotal.innerHTML = `<strong>Total:</strong> $${total.toFixed(2)}`;
 
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {

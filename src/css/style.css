@@ -479,3 +479,6 @@ a.element-list:hover img {
   flex-direction: row-reverse;
   cursor: pointer;
 }
+.wish-list {
+  list-style: none;
+}

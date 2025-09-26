@@ -1,45 +1,52 @@
 <!doctype html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside |</title>
 
-  <title>Sleep Outside | </title>
+    <link rel="stylesheet" href="../css/style.css" />
 
-  <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/product.js" type="module"></script>
+    <script type="module" src="../js/main.mjs" defer></script>
+  </head>
 
-  <script src="../js/product.js" type="module"></script>
-  <script type="module" src="../js/main.mjs" defer></script>
-</head>
+  <body>
+    <div id="header"></div>
 
-<body>
-  <div id="header"></div>
+    <main class="divider">
+      <section class="product-detail">
+        <div id="breadcrumbs">
+          <a href="/"
+            ><img
+              class="home"
+              src="../public/images/noun-home-8071495.svg"
+              alt="Home"
+            />&rsaquo;</a
+          >
+          <h2 class="title highlight"></h2>
+        </div>
+        <figure>
+          <img src="" alt="" id="p-image" width="300" />
+        </figure>
+        <div class="fav-container">
+          <p id="addToFav" class="fav-item"></p>
+        </div>
+        <section id="product-info">
+          <h3 id="p-brand"></h3>
+          <p id="p-name"></p>
 
-  <main class="divider">
-    <section class="product-detail">
-      <div id="breadcrumbs">
-        <a href="/"><img class="home" src="../public/images/noun-home-8071495.svg" alt="Home">&rsaquo;</a> <h2
-          class="title highlight"></h2>
-      </div>
-      <figure>
-        <img src="" alt="" id="p-image" width="300" />
-      </figure>
-      <section id="product-info">
-        <h3 id="p-brand"></h3>
-        <p id="p-name"></p>
-  
-        <p id="p-color"></p>
-        <p id="p-description"></p>
-        <p id="p-price"></p>
-        <button id="addToCart" data-id="">Add to Cart</button>
+          <p id="p-color"></p>
+          <p id="p-description"></p>
+          <p id="p-price"></p>
+          <button id="addToCart" data-id="">Add to Cart</button>
+        </section>
       </section>
-    </section>
-  </main>
+    </main>
 
-  <div id="footer"></div>
-</body>
-
+    <div id="footer"></div>
+  </body>
 </html>

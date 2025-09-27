@@ -1,7 +1,7 @@
-import { getLocalStorage } from "./utils.mjs";
+import { formDataToJSON, getLocalStorage, packageItems } from "./utils.mjs";
 
 export default class CheckoutProcess {
-    constructor(key, outputSelector) {
+    constructor(key, outputSelector, externalApi) {
         this.key = key;
         this.outputSelector = outputSelector;
         this.list = [];
@@ -9,6 +9,7 @@ export default class CheckoutProcess {
         this.shipping = 0;
         this.tax = 0;
         this.orderTotal = 0;
+        this.externalApi = externalApi;
     }
 
     init() {
@@ -86,6 +87,59 @@ export default class CheckoutProcess {
         const orderTotalSummary = document.querySelector(".order-total");
         if (orderTotalSummary) {
             orderTotalSummary.innerHTML = `Order Total: <strong>$${this.orderTotal.toFixed(2)}</strong>`;
+        }
+    }
+
+    async checkout(form) {
+        const formData = formDataToJSON(form);
+
+        formData.cardNumber = formData.cardNumber.replace(/-/g, '');
+
+        const items = packageItems(this.list);
+
+        const order = {
+            orderDate: new Date().toISOString(),
+            ...formData,
+            items: items,
+            orderTotal: this.orderTotal.toFixed(2),
+            shipping: this.shipping.toFixed(2),
+            tax: this.tax.toFixed(2)
+        };
+
+        console.log('Order to submit:', order);
+
+        try {
+            const response = await fetch(this.externalApi, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(order)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Order submitted successfully:', data);
+                localStorage.removeItem(this.key);
+                return true;
+            } else {
+                
+                let errorMessage = `Order submission failed with status: ${response.status}`;
+
+                try {
+                    
+                    const errorData = await response.json();
+                    errorMessage = `Order submission failed: ${errorData.message || JSON.stringify(errorData)}`;
+                } catch (e) {
+    
+                    console.error("Server error body was not JSON:", await response.text());
+                }
+
+                throw new Error(errorMessage);
+            }
+        } catch (error) {
+            console.error('Error during checkout process:', error.message);
+            return false;
         }
     }
 }

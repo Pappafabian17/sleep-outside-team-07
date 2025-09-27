@@ -104,3 +104,26 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+export function packageItems(items) {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+  return items.map(item => ({
+    id: item.Id,
+    name: item.Name,
+    price: item.FinalPrice,
+    quantity: item.quantity || 1
+  }));
+}
+
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement);
+  const convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}

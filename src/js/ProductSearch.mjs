@@ -1,5 +1,5 @@
 import { qs, textContains } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 function productSearchTemplate(product) {
   const imageUrl = product.Image || product.Images.PrimarySmall;
@@ -14,7 +14,7 @@ function productSearchTemplate(product) {
 
 export default class ProductSearch {
   constructor() {
-    this.productData = new ProductData();
+    this.ExternalServices = new ExternalServices();
     this.products = [];
     this.searchContainer = qs(".search");
     this.searchInput = qs("#search");
@@ -22,7 +22,7 @@ export default class ProductSearch {
   }
 
   async init() {
-    this.products = await this.productData.findAllProducts();
+    this.products = await this.ExternalServices.findAllProducts();
     if (!this.products) {
       return;
     }

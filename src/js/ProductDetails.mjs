@@ -38,7 +38,7 @@ function productDetailsTemplate(product) {
   const euroPrice = new Intl.NumberFormat('de-DE', {
     style: 'currency',
     currency: 'EUR',
-  }).format(Number(product.FinalPrice) * 0.85);
+  }).format(Number(product.FinalPrice));
 
   let priceHTML = '';
   if (hasDiscount) {

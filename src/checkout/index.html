@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../css/style.css" />
 
   <script src="../js/main.mjs" type="module"></script>
+  <script src="../js/checkout.js" type="module"></script>
 </head>
 
 <body>
@@ -20,24 +21,26 @@
   <main class="divider">
     <section class="products">
       <div id="breadcrumbs">
-        <a href="/"><img class="home" src="../public/images/noun-home-8071495.svg" alt="Home">&rsaquo;</a>
+        <a href="/"><img class="home" src="/images/noun-home-8071495.svg" alt="Home">&rsaquo;</a>
         <h2 class="title highlight">Review & Place your Order </h2>
       </div>
     </section>
 
     <section class="checkout-form">
 
-      <form class="checkoutForm" id="checkoutForm">
+      <form class="checkoutForm" id="checkoutForm" name="checkout">
 
         <fieldset>
           <legend>Customer Name</legend>
           <div class="form-group fname-hint">
             <label for="fname">First Name</label>
-            <input type="text" name="fname" id="fname" pattern="^[a-zA-Z\u00C0-\u017F\s\'-.]+$" placeholder="Enter a valid name (without numbers or symbols.)" title="First Name" required>
+            <input type="text" name="fname" id="fname" pattern="^[a-zA-Z\u00C0-\u017F\s\'-.]+$"
+              placeholder="Enter a valid name (without numbers or symbols.)" title="First Name" required>
           </div>
           <div class="form-group lname-hint">
             <label for="lname">Last Name</label>
-            <input type="text" name="lname" id="lname" pattern="^[a-zA-Z\u00C0-\u017F\s\'-.]+$" placeholder="Enter a valid last name (without numbers or symbols.)" title="Last Name" required>
+            <input type="text" name="lname" id="lname" pattern="^[a-zA-Z\u00C0-\u017F\s\'-.]+$"
+              placeholder="Enter a valid last name (without numbers or symbols.)" title="Last Name" required>
           </div>
         </fieldset>
 
@@ -45,7 +48,8 @@
           <legend>Address</legend>
           <div class="form-group">
             <label for="street">Street Address</label>
-            <input type="text" name="street" id="street" placeholder="Street Address Line 1" title="Street Address" required>
+            <input type="text" name="street" id="street" placeholder="Street Address Line 1" title="Street Address"
+              required>
           </div>
           <div class="form-group">
             <label for="city">City</label>
@@ -54,7 +58,8 @@
           <div class="form-inline-group">
             <div class="form-group">
               <label for="state">State</label>
-              <input type="text" name="state" id="state" placeholder="State (postal abbreviation, e.g. CA)"  title="State" required>
+              <input type="text" name="state" id="state" placeholder="State (postal abbreviation, e.g. CA)"
+                title="State" required>
             </div>
             <div class="form-group">
               <label for="zip">Zip Code</label>
@@ -67,47 +72,23 @@
           <legend>Payment</legend>
           <div class="form-group">
             <label for="cardNumber">Credit Card Number</label>
-            <input
-              type="text"
-              name="cardNumber" 
-              id="cardNumber"
-              placeholder="XXXX-XXXX-XXXX-XXXX"
-              title="Four groups of four digits, (e.g. 1234-5678-9012-3456)"
-              maxlength="19"
-              required
-            >
+            <input type="text" name="cardNumber" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX"
+              title="Four groups of four digits, (e.g. 1234-5678-9012-3456)" maxlength="19" required>
           </div>
           <div class="form-group">
             <label for="expiration">Expiration Date</label>
-            <input
-              type="text"
-              name="expiration"
-              id="expiration"
-              placeholder="MM/YY"
-              title="Type your expiration date (MM/YY)"
-              maxlength="5"
-              required
-              >
+            <input type="text" name="expiration" id="expiration" placeholder="MM/YY"
+              title="Type your expiration date (MM/YY)" maxlength="5" required>
           </div>
           <div class="form-group">
             <label for="code">Security Code</label>
-            <input
-              type="text"
-              name="code"
-              id="code"
-              placeholder="CVC"
-              title="Type your security code (e.g. 123)"
-              maxlength="3"
-              pattern="[0-9]{3}"
-              oninput="this.value = this.value.replace(/\D/g, '')"
-              required
-              >
+            <input type="text" name="code" id="code" placeholder="CVC" title="Type your security code (e.g. 123)"
+              maxlength="3" pattern="[0-9]{3}" oninput="this.value = this.value.replace(/\D/g, '')" required>
           </div>
         </fieldset>
 
-        
       </form>
-      
+
       <div class="checkout-summary">
 
         <div class="sub-total">Sub Total: $</div>
@@ -117,8 +98,8 @@
         <div class="shipping">Shipping Estimate: $</div>
 
         <div class="order-total">Order Total: $</div>
-        
-        <button type="submit" form="checkoutForm">Proceed to Pay</button>
+
+        <button type="submit" id="checkoutSubmit" form="checkout">Proceed to Pay</button>
       </div>
 
     </section>

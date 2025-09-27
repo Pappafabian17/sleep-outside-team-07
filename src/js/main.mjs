@@ -12,7 +12,7 @@ async function initPage() {
   // Initialize cart count when this module loads
   updateCartCount();
 
-  const CHECKOUT_API_URL = "http://wdd330-backend.onrender.com/checkout/"; 
+  const CHECKOUT_API_URL = "https://wdd330-backend.onrender.com/checkout/"; 
 
   const checkoutProcess = new CheckoutProcess("so-cart", ".checkout-summary", CHECKOUT_API_URL);
   checkoutProcess.init();

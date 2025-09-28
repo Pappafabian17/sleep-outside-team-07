@@ -2,7 +2,9 @@ trello-link = https://trello.com/b/WjxdBcHC/sleep-outside-team-07
 Netlify-link(production) = https://sleepoutside07team.netlify.app/
 ===== Team-members ===== 
 Fabian Pappa
+Steve Chrispin
 Karim Valenzuela
+Steve Chrispin
 Jose David Colmenarez Gil
 Sione Uhlig 
 Marvin Canastuj
